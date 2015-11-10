@@ -60,7 +60,10 @@
     },
     insertFields: function(content, assoc, link) {
       var target = $(link).data('target');
-      if (target) {
+      var james_hack_target = $(link).data('james-hack-target');
+      if ( target && james_hack_target ) {
+        return $(content).appendTo( $(link).closest(james_hack_target).find(target) );
+      } else if (target) {
         return $(content).appendTo($(target));
       } else {
         return $(content).insertBefore(link);
